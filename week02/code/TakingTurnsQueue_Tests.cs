@@ -12,6 +12,11 @@ public class TakingTurnsQueueTests
     // run until the queue is empty
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+
+    ///<summary>
+    ///This test failed at line 37  beacuse the test was expecting bob as the outcome but got sue instead
+    ///Person with finite turns wasnt removed from the que
+    ///<summary>
     public void TestTakingTurnsQueue_FiniteRepetition()
     {
         var bob = new Person("Bob", 2);
@@ -44,6 +49,12 @@ public class TakingTurnsQueueTests
     // After running 5 times, add George with 3 turns.  Run until the queue is empty.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, George, Sue, Tim, George, Tim, George
     // Defect(s) Found: 
+
+    ///<summary>
+    ///This test failed Assert.AreEqual failed, it expected Bob but got sue instead
+    ///Adding a person midway is not handled correctly at line 74
+    ///<summary>
+
     public void TestTakingTurnsQueue_AddPlayerMidway()
     {
         var bob = new Person("Bob", 2);
@@ -86,6 +97,11 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+
+    ///<summary>
+    //This test failed the results expected bob but got sue instead, failed at line 107
+    //People with turns zero or less are not rotating correctly
+    ///<summary>
     public void TestTakingTurnsQueue_ForeverZero()
     {
         var timTurns = 0;
@@ -117,6 +133,10 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
     // Defect(s) Found: 
+    ///<summary>
+    ///This test failed the results expected tim but got sue, the failure happened at line 135
+    ///People with turns zero or less are not rotating correctly
+    ///<summary>
     public void TestTakingTurnsQueue_ForeverNegative()
     {
         var timTurns = -3;
@@ -144,6 +164,10 @@ public class TakingTurnsQueueTests
     // Scenario: Try to get the next person from an empty queue
     // Expected Result: Exception should be thrown with appropriate error message.
     // Defect(s) Found: 
+
+    ///<summary>
+    //This test passed 
+    ///<summary>
     public void TestTakingTurnsQueue_Empty()
     {
         var players = new TakingTurnsQueue();
